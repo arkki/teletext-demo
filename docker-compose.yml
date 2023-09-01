@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  teletext:
+    build: .
+    image: arkki/teletext
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    networks:
+      - teletext-net
+  mongo:
+    image: mongo
+    ports:
+      - "27017"
+    networks:
+      - teletext-net
+
+networks:
+  teletext-net:
+    name: olliniinioja-teletext-network
+    external: true
