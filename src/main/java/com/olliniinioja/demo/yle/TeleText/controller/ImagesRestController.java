@@ -45,7 +45,8 @@ public class ImagesRestController {
         }
 
         if (image.isEmpty()) {
-            throw new FileNotFoundException(String.format("Could not find records with page: %s, subpage: %s, time: %s", page, subpage, date != null ? date.toString() : ""));
+            throw new FileNotFoundException(String.format("Could not find records with page: %s, subpage: %s, time: %s",
+                    page, subpage, date != null ? date.toString() : ""));
         }
 
         try {

@@ -3,9 +3,6 @@
 # Build webapp
 mvn clean package
 
-# Setup docker network
-docker network create teletext-network-ext
-
 # Build and start containers
 docker-compose down
 docker-compose up -d
