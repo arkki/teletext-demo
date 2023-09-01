@@ -1,10 +1,6 @@
 #!/bin/sh
 
-# Build webapp
-./mvnw clean package
-
-# Build and start containers
-docker-compose down
+# Start containers in daemon
 docker-compose up -d
 
 # Init DB

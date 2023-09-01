@@ -1,0 +1,6 @@
+version: "3.8"
+services:
+  teletext:
+    # Uncomment when building for prod
+    build: .
+    image: arkki/teletext

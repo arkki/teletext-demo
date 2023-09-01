@@ -34,9 +34,15 @@ To use Java Remote Debugging use script `debug.sh` to expose debug port at `loca
 - Docker & Docker Compose for building prod image
 
 
-## Runtime dependencies
+## Dev runtime dependencies
 - Local MongoDB running at `localhost:27017`. DB dump can be restored from `/db/dump_2023-08-31.gz`
 
-## Prod build and running in Docker
-Use script `docker-start.sh` to build for prod and run webapp.
+## Building for prod
+To build Docker image after changes use script `build.sh`.
+This will compile and package webapp WAR and create a new Docker image with Tomcat preinstalled and WAR deployed.
+
+Next section describes how to start services.
+
+## Running in Docker
+Use script `docker-start.sh` to run the prod build of webapp.
 This scripts handles everything including initiating teletext database in MongoDB container. Only port 8080 is exposed on host. 
