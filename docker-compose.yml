@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   teletext:
-    build: .
+
+    # Uncomment when building for prod
+    # build: .
     image: arkki/teletext
     ports:
       - "8080:8080"
@@ -11,12 +13,12 @@ services:
       - teletext-net
   mongo:
     image: mongo
-    ports:
+    expose:
       - "27017"
     networks:
       - teletext-net
 
 networks:
   teletext-net:
-    name: olliniinioja-teletext-network
-    external: true
+    name: teletext-network-ext
+    external: false

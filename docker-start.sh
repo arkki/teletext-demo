@@ -4,7 +4,7 @@
 mvn clean package
 
 # Setup docker network
-docker network create olliniinioja-teletext-network
+docker network create teletext-network-ext
 
 # Build and start containers
 docker-compose down
