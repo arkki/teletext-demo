@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Build webapp
-mvn clean package
+./mvnw clean package
 
 # Build and start containers
 docker-compose down
