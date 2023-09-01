@@ -3,6 +3,10 @@ It can be used for fetching historical teksti-tv pages as PNG images.
 
 **NOTE:** The data provided is pre-downloaded and populated in DB and it's very limited! There is no active integration updating the database. In real world PNG files would be served from for example S3 - like it's done in Yle API.
 
+## Stack
+- Spring Boot 3.1.3
+- MongoDB 7
+
 
 ## Usage
 http://localhost:8080 - landing page with test cases.
@@ -23,11 +27,15 @@ This profile is required for connection to a local MongoDB running at `localhost
 
 To use Java Remote Debugging use script `debug.sh` to expose debug port at `localhost:5005`.
 
-## Dependencies
+## Build dependencies
+- Linux / macOS
 - Maven
 - Java 17
-- Local MongoDB running at `localhost:27017`. DB dump can be restored from `/db/dump_2023-08-31.gz`
 - Docker & Docker Compose for building prod image
+
+
+## Runtime dependencies
+- Local MongoDB running at `localhost:27017`. DB dump can be restored from `/db/dump_2023-08-31.gz`
 
 ## Prod build and running in Docker
 Use script `docker-start.sh` to build for prod and run webapp.
