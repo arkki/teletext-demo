@@ -1,0 +1,29 @@
+{
+ "teletext": {
+  "network": "YLE",
+  "xml": "preserve",
+  "page": {
+   "number": "100",
+   "name": "Uutiset",
+   "subpagecount": "4",
+   "nextpg": "101",
+   "toptype": "block",
+   "time": "2023-08-29T15:07:32",
+   "animated": "yes",
+   "subpage": [
+    {
+     "number": "1",
+     "time": "8"
+    },{
+     "number": "2",
+     "time": "8"
+    },{
+     "number": "3",
+     "time": "8"
+    },{
+     "number": "4",
+     "time": "8"
+    }]
+  }
+ }
+}
