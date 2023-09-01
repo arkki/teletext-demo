@@ -10,7 +10,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
+// FIXME: hacky way to authenticate via URL params on each request - consider using JWT
 public class AuthenticationFilter extends OncePerRequestFilter {
+
+    // FIXME: Refactor not to use hard-coded credentials
+    private static final String APP_ID = "teletext";
+    private static final String APP_KEY = "secret";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -18,10 +23,16 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String appId = request.getParameter("app_id");
         String appKey = request.getParameter("app_key");
 
-        if (!("teletext").equals(appId) || !("secret").equals(appKey)) {
-            throw new ServletException("Wrong credentials!");
+        if (APP_ID.equals(appId) && APP_KEY.equals(appKey)) {
+            filterChain.doFilter(request, response);
+            return;
         }
 
-        filterChain.doFilter(request, response);
+        if (request.getServletPath().equals("/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        response.sendError(401, "Wrong credentials!");
     }
 }
