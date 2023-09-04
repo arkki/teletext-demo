@@ -1,6 +1,7 @@
 package com.olliniinioja.demo.yle.TeleText.controller;
 
 import com.olliniinioja.demo.yle.TeleText.model.Image;
+import com.olliniinioja.demo.yle.TeleText.repository.FileRepository;
 import com.olliniinioja.demo.yle.TeleText.repository.ImageRepository;
 import com.olliniinioja.demo.yle.TeleText.util.DateUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -8,11 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Instant;
@@ -24,6 +22,9 @@ public class ImagesRestController {
 
     @Autowired
     private ImageRepository repository;
+
+    @Autowired
+    private FileRepository fileRepository;
 
     @GetMapping("/{page}/{subpage}.{ext}")
     @ResponseBody
@@ -50,8 +51,7 @@ public class ImagesRestController {
         }
 
         try {
-            File file = ResourceUtils.getFile("classpath:" + image.get().url);
-            InputStream in = new FileInputStream(file);
+            InputStream in = fileRepository.getFile(image.get().url);
             return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(new InputStreamResource(in));
         } catch (IOException e) {
             throw new FileNotFoundException("Could not find file in system: " + image.get().url);

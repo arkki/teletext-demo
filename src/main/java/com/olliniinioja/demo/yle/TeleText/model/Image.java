@@ -24,4 +24,10 @@ public class Image implements Serializable {
     public String url;
 
     public Instant time;
+
+    public Image(int page, int subpage, String url) {
+        this.page = page;
+        this.subpage = subpage;
+        this.url = url;
+    }
 }
